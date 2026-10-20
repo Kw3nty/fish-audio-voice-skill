@@ -82,10 +82,11 @@ def split_long(text: str, limit: int = CHUNK_LIMIT) -> list[str]:
 
 
 def parse_script(path: Path) -> list[dict]:
-    raw = path.read_text(encoding="utf-8")
+    raw = path.read_text(encoding="utf-8-sig")
     chapters: list[dict] = []
     current_title: str | None = None
     current_lines: list[str] = []
+    saw_chapter_heading = False
 
     def flush() -> None:
         nonlocal current_title, current_lines
@@ -98,6 +99,7 @@ def parse_script(path: Path) -> list[dict]:
         if re.match(r"^\s*##\s+", line):
             flush()
             current_title = re.sub(r"^\s*##\s+", "", line).strip()
+            saw_chapter_heading = True
         elif re.match(r"^\s*#\s+", line):
             if current_lines:
                 flush()
@@ -106,8 +108,8 @@ def parse_script(path: Path) -> list[dict]:
     flush()
     if not chapters:
         raise SystemExit("Script is empty.")
-    if len(chapters) == 1:
-        # No headings: split by blank lines, which is how most narration scripts arrive.
+    if len(chapters) == 1 and not saw_chapter_heading:
+        # No chapter headings: split by blank lines, which is how most narration scripts arrive.
         blocks = [strip_markdown(b) for b in re.split(r"\n\s*\n", raw) if strip_markdown(b)]
         if len(blocks) > 1:
             chapters = [{"title": f"Chapter {i + 1}", "text": b} for i, b in enumerate(blocks)]
