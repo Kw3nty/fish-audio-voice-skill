@@ -1,0 +1,13 @@
+.env
+.env.*
+*.key
+*.pem
+voiceover/
+out/
+node_modules/
+__pycache__/
+*.pyc
+*.wav
+*.mp3
+*.zip
+!examples/voiceover.zip
