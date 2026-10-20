@@ -9,6 +9,8 @@ A portable skill for AI coding agents. Drop this repository into an AI session a
 
 It writes chapter MP3s, one normalized WAV, `timing.json` for scenes, optional word timings for captions, and a ZIP archive.
 
+**Download the ready-to-use archive:** [fish-audio-voice-skill.zip v1.0.0](https://github.com/Kw3nty/fish-audio-voice-skill/releases/download/v1.0.0/fish-audio-voice-skill.zip)
+
 ## How to use it as a skill
 
 1. Download this repository as ZIP (or clone it).
@@ -78,6 +80,8 @@ MIT. The skill is a wrapper around the Fish Audio public API, not an official Fi
 2. **ID голоса** (`reference_id`)
 
 На выходе — MP3 по главам, нормализованный WAV, `timing.json` для сцен, при необходимости тайминги слов для субтитров и ZIP-архив.
+
+**Готовый архив:** [fish-audio-voice-skill.zip v1.0.0](https://github.com/Kw3nty/fish-audio-voice-skill/releases/download/v1.0.0/fish-audio-voice-skill.zip)
 
 ### Как пользоваться
 
